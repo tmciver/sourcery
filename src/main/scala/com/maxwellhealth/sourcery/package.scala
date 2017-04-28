@@ -1,10 +1,16 @@
 package com.maxwellhealth
 package object sourcery {
 
-  type Handled[T, E] = Either[E, List[Event[T]]]
+  // I: Identifier type
+  // E: Error type
+  type Handled[I, E] = Either[E, List[Event[I]]]
 
-  type EventListeners[T, E] = Map[Event[T], List[EventListener[T, E]]]
+  // I: Identifier type
+  // V: type of Event
+  //type EventListeners[I] = Map[Class[T] forSome {type T <: Event[I]}, List[EventListener[I]]]
+  type EventListeners[I] = Map[Class[_ <: Event[I]], List[EventListener[I]]]
 
-  type EventListener[T, E] = Event[T] => Either[E, String]
+  // I: Identifier type
+  type EventListener[I] = Event[I] => Unit
 }
 
