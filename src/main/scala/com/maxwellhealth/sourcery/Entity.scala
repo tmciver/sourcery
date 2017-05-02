@@ -1,5 +1,5 @@
 package com.maxwellhealth.sourcery
 
-trait Entity[T] extends Identifiable[T] {
-
+trait Entity[I] extends Identifiable[I] {
+  def applyEvent(event: Event[I]): Entity[I]
 }
