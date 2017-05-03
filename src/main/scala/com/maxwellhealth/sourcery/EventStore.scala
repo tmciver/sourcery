@@ -7,5 +7,5 @@ trait EventStore[I] {
   def save(event: Event[I]): Unit
 
   // @todo ibid
-  def save(events: List[Event[I]]): Unit = events.foreach(this.save(_))
+  final def save(events: List[Event[I]]): Unit = events.foreach(this.save(_))
 }
